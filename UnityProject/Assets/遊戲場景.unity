@@ -126,6 +126,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1388622973}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &24378807
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24378806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.46794474
+  m_Center: {x: 0, y: 1.7322555, z: 1.6952976}
 --- !u!4 &24378808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: fa023b68c2445524c8670fbbbb231996,
@@ -157,8 +170,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4777756, y: 2.173081, z: 1.3897362}
-  m_Center: {x: -0.008018494, y: 1.2464755, z: 1.6424198}
+  m_Size: {x: 2.5, y: 2.1, z: 2}
+  m_Center: {x: 0, y: 1.2, z: 1.5}
 --- !u!114 &24378811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +189,8 @@ MonoBehaviour:
   dialogStart: "\u964C\u751F\u4EBA\u4F60\u597D\uFF0C\u8ACB\u554F\u53EF\u4EE5\u5E6B\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
   dialogNotComplete: "\u8ACB\u554F\u4F60\u9084\u6C92\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
   dialogComplete: "\u964C\u751F\u4EBA\uFF0C\u8B1D\u8B1D\u4F60\u5E6B\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u3002"
+  dialogSpeed: 0.05
+  _npcState: 0
 --- !u!1 &106119554
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 3}
       propertyPath: m_LocalRotation.x
