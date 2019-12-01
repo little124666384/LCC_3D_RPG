@@ -5,12 +5,14 @@ public class PlayerController : MonoBehaviour
 {
     private Animator ani, aniRoot;          // 模型動畫控制器，工具動畫控制器
     private vThirdPersonController tpc;     // 第三人稱控制器
+    private Rigidbody rig;
 
     private void Start()
     {
         ani = GetComponent<Animator>();
         aniRoot = transform.root.GetComponent<Animator>();          // 根物件 transform.root
         tpc = transform.root.GetComponent<vThirdPersonController>();
+        rig = transform.root.GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -48,10 +50,12 @@ public class PlayerController : MonoBehaviour
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("攻擊"))
         {
             tpc.enabled = false;
+            rig.constraints = RigidbodyConstraints.FreezeAll;
         }
         else
         {
             tpc.enabled = true;
+            rig.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 }
