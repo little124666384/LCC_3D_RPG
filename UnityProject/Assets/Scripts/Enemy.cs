@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
         if (dis <= distanceTrack)
         {
-            ani.SetBool("走路開關", true);
+            ani.SetBool("走路開關", !(agent.isStopped = false));             // 是否停止 = 否 - 動畫狀態 = 顛倒(是否停止)
             agent.SetDestination(target.position);                          // 代理器.設定目的地(三維向量)
         }
         else
@@ -56,12 +56,12 @@ public class Enemy : MonoBehaviour
 
     private void Idle()
     {
-        
+        ani.SetBool("走路開關", !(agent.isStopped = true));                 // 是否停止 = 否 - 動畫狀態 = 顛倒(是否停止)
     }
 
     private void Attack()
     {
-
+        
     }
 
     private void Hit()
