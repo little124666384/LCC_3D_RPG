@@ -8,9 +8,9 @@ public class NPC : MonoBehaviour
     public GameObject dialog;
     public Text textDialog;
     [Header("對話內容")]
-    public string dialogStart = "陌生人你好，請問可以幫我找到十個零件嗎？";
-    public string dialogNotComplete = "請問你還沒找到十個零件嗎？";
-    public string dialogComplete = "陌生人，謝謝你幫我找到十個零件。";
+    public string dialogStart = "陌生人，請問可以替我找到十個零件嗎？";
+    public string dialogNotComplete = "陌生人，請問還沒找到十個零件嗎？";
+    public string dialogComplete = "陌生人，謝謝替我找到十個零件。";
     [Header("對話速度"), Range(0.001f, 5.5f)]
     public float dialogSpeed = 0.5f;
 
@@ -88,6 +88,15 @@ public class NPC : MonoBehaviour
     private void DialogEnd()
     {
         dialog.SetActive(false);
+    }
+
+    /// <summary>
+    /// 取得道具，每次增加 1 個道具並更新介面
+    /// </summary>
+    public void GetProp()
+    {
+        propCurrent++;
+        textProp.text = "零件： " + propCurrent + " / " + propTotal;
     }
 
     private void Start()

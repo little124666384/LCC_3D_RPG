@@ -186,10 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog: {fileID: 1158206497}
   textDialog: {fileID: 135433533}
-  dialogStart: "\u964C\u751F\u4EBA\u4F60\u597D\uFF0C\u8ACB\u554F\u53EF\u4EE5\u5E6B\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
-  dialogNotComplete: "\u8ACB\u554F\u4F60\u9084\u6C92\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
-  dialogComplete: "\u964C\u751F\u4EBA\uFF0C\u8B1D\u8B1D\u4F60\u5E6B\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u3002"
-  dialogSpeed: 0.05
+  dialogStart: "\u964C\u751F\u4EBA\uFF0C\u8ACB\u554F\u53EF\u4EE5\u66FF\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
+  dialogNotComplete: "\u964C\u751F\u4EBA\uFF0C\u8ACB\u554F\u9084\u6C92\u627E\u5230\u5341\u500B\u96F6\u4EF6\u55CE\uFF1F"
+  dialogComplete: "\u964C\u751F\u4EBA\uFF0C\u8B1D\u8B1D\u66FF\u6211\u627E\u5230\u5341\u500B\u96F6\u4EF6\u3002"
+  dialogSpeed: 0.1
   _npcState: 0
   propCurrent: 0
   propTotal: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f6228ff6ec8a86b4ca1eb04adc3e6db1, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -1079,6 +1079,38 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 61ab9440c84ca97449d770e894c3b76b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa023b68c2445524c8670fbbbb231996, type: 3}
+--- !u!1 &1397795849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 148850, guid: ee2d107a34692a64e95ce85aed5e41f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1355459567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1397795850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397795849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d7ca68b859f4d4abcbe602d936083c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGetProp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 24378811}
+        m_MethodName: GetProp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1413109863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,7 +1259,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: f6228ff6ec8a86b4ca1eb04adc3e6db1, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -1688,7 +1720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6d5f66926f86d304eadada78d16964b0, type: 3}
+    m_Font: {fileID: 12800000, guid: f6228ff6ec8a86b4ca1eb04adc3e6db1, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
