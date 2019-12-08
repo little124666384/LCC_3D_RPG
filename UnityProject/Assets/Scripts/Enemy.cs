@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;   // 引用 人工智慧 API
 
 public class Enemy : MonoBehaviour
 {
@@ -13,10 +14,19 @@ public class Enemy : MonoBehaviour
     public float distanceTrack = 25f;
 
     private Transform target;   // 目標物件
+    private Animator ani;       // 動畫元件
+    private NavMeshAgent agent; // 導覽代理器元件
 
     private void Start()
     {
+        ani = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         target = GameObject.Find("玩家").transform;
+    }
+
+    private void Update()
+    {
+        Track();
     }
 
     private void OnDrawGizmos()
@@ -28,14 +38,15 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawSphere(transform.position, distanceTrack);
     }
 
-    private void Tarck()
+    private void Track()
     {
-
+        float dis = Vector3.Distance(target.position, transform.position);
+        print("距離：" + dis);
     }
 
     private void Idle()
     {
-
+        
     }
 
     private void Attack()
