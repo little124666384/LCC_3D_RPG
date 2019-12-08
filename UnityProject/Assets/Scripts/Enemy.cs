@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         target = GameObject.Find("玩家").transform;
     }
 
@@ -40,8 +41,17 @@ public class Enemy : MonoBehaviour
 
     private void Track()
     {
-        float dis = Vector3.Distance(target.position, transform.position);
-        print("距離：" + dis);
+        float dis = Vector3.Distance(target.position, transform.position);  // 距離 = 三維向量.距離(A 點，B 點)
+
+        if (dis <= distanceTrack)
+        {
+            ani.SetBool("走路開關", true);
+            agent.SetDestination(target.position);                          // 代理器.設定目的地(三維向量)
+        }
+        else
+        {
+            Idle();
+        }
     }
 
     private void Idle()
