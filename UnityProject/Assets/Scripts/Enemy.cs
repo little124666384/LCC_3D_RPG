@@ -12,7 +12,10 @@ public class Enemy : MonoBehaviour
     public float distanceAttack = 5f;
     [Range(0f, 100f), Tooltip("追蹤距離")]
     public float distanceTrack = 25f;
+    [Range(2.5f, 5f)]
+    public float cd = 3.5f;
 
+    private float timer;
     private Transform target;   // 目標物件
     private Animator ani;       // 動畫元件
     private NavMeshAgent agent; // 導覽代理器元件
@@ -43,7 +46,11 @@ public class Enemy : MonoBehaviour
     {
         float dis = Vector3.Distance(target.position, transform.position);  // 距離 = 三維向量.距離(A 點，B 點)
 
-        if (dis <= distanceTrack)
+        if (dis <= distanceAttack)                                          // 距離 <= 攻擊距離 進行攻擊
+        {
+            Attack();
+        }
+        else if (dis <= distanceTrack)                                      // 距離 <= 追蹤距離 進行追蹤
         {
             ani.SetBool("走路開關", !(agent.isStopped = false));             // 是否停止 = 否 - 動畫狀態 = 顛倒(是否停止)
             agent.SetDestination(target.position);                          // 代理器.設定目的地(三維向量)
@@ -61,7 +68,17 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        
+        if (timer >= cd)                                                    // 如果 計時器 >= 冷卻時間
+        {
+            timer = 0;                                                      // 歸零重新計算時間
+            agent.isStopped = true;                                         // 停止代理器避免滑行
+            ani.SetTrigger("攻擊觸發");                                      // 工及動畫
+        }
+        else
+        {
+            timer += Time.deltaTime;                                        // 否則 計時器 < 冷卻時間，累加時間
+            Idle();                                                         // 等待
+        }
     }
 
     private void Hit()
