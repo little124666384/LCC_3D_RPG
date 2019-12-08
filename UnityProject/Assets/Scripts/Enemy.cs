@@ -12,6 +12,13 @@ public class Enemy : MonoBehaviour
     [Range(0f, 100f), Tooltip("追蹤距離")]
     public float distanceTrack = 25f;
 
+    private Transform target;   // 目標物件
+
+    private void Start()
+    {
+        target = GameObject.Find("玩家").transform;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.3f);                // 圖示.顏色
@@ -19,5 +26,30 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = new Color(0, 1, 0, 0.3f);
         Gizmos.DrawSphere(transform.position, distanceTrack);
+    }
+
+    private void Tarck()
+    {
+
+    }
+
+    private void Idle()
+    {
+
+    }
+
+    private void Attack()
+    {
+
+    }
+
+    private void Hit()
+    {
+
+    }
+
+    private void Dead()
+    {
+
     }
 }
