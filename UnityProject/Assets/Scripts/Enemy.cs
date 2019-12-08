@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     public float cd = 3.5f;
     [Range(2.5f, 5f), Tooltip("攻擊範圍")]
     public float rangeAttack = 3f;
+    [Range(0, 5), Tooltip("攻擊延遲判定")]
+    public float delayAttack = 1.2f;
 
     private float timer;
     private Transform target;   // 目標物件
@@ -91,12 +93,23 @@ public class Enemy : MonoBehaviour
         {
             timer = 0;                                                      // 歸零重新計算時間
             agent.isStopped = true;                                         // 停止代理器避免滑行
-            ani.SetTrigger("攻擊觸發");                                      // 工及動畫
+            ani.SetTrigger("攻擊觸發");                                      // 攻擊動畫
+            Invoke("DelayAttack", delayAttack);                             // 延遲調用("方法名稱"，延遲時間)
         }
         else
         {
             timer += Time.deltaTime;                                        // 否則 計時器 < 冷卻時間，累加時間
             Idle();                                                         // 等待
+        }
+    }
+
+    private void DelayAttack()
+    {
+        RaycastHit hit; // 射線碰撞資訊
+        // 物理.射線碰撞(起點，方向，射線碰撞資訊，長度)
+        if (Physics.Raycast(transform.position + Vector3.up, transform.forward,out hit, rangeAttack))
+        {
+            print(hit.collider.gameObject);
         }
     }
 
