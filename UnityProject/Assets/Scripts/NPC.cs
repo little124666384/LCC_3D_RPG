@@ -83,7 +83,7 @@ public class NPC : MonoBehaviour
         // for (初始值；條件(布林值)；迭代器
         for (int i = 0; i < dialog.Length; i++)
         {
-            aud.PlayOneShot(soundDialog, 0.5f);
+            aud.PlayOneShot(soundDialog, 0.3f);
             textDialog.text += dialog[i].ToString();
             yield return new WaitForSeconds(dialogSpeed);
         }
@@ -104,7 +104,7 @@ public class NPC : MonoBehaviour
     public void GetProp()
     {
         propCurrent++;
-        aud.PlayOneShot(soundProp, 0.5f);
+        aud.PlayOneShot(soundProp, 1f);
         textProp.text = "零件： " + propCurrent + " / " + propTotal;
         if (propCurrent == propTotal) _npcState = npcState.complete;
     }
