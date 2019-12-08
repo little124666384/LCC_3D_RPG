@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     [Range(0, 5), Tooltip("攻擊延遲判定")]
     public float delayAttack = 1.2f;
 
+    public float attack = 20;
+
     private float timer;
     private Transform target;   // 目標物件
     private Animator ani;       // 動畫元件
@@ -109,7 +111,10 @@ public class Enemy : MonoBehaviour
         // 物理.射線碰撞(起點，方向，射線碰撞資訊，長度)
         if (Physics.Raycast(transform.position + Vector3.up, transform.forward,out hit, rangeAttack))
         {
-            print(hit.collider.gameObject);
+            if (hit.collider.gameObject.name == "守衛")
+            {
+                hit.collider.GetComponent<PlayerController>().Hit(attack);
+            }
         }
     }
 

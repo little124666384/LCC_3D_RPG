@@ -3,6 +3,8 @@ using Invector.CharacterController;
 
 public class PlayerController : MonoBehaviour
 {
+    public float hp = 100;
+
     private Animator ani, aniRoot;          // 模型動畫控制器，工具動畫控制器
     private vThirdPersonController tpc;     // 第三人稱控制器
     private Rigidbody rig;
@@ -57,5 +59,11 @@ public class PlayerController : MonoBehaviour
             tpc.enabled = true;
             rig.constraints = RigidbodyConstraints.FreezeRotation;
         }
+    }
+
+    public void Hit(float damage)
+    {
+        hp -= damage;
+        ani.SetTrigger("受傷觸發");
     }
 }
