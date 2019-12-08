@@ -13,6 +13,9 @@ public class NPC : MonoBehaviour
     public string dialogComplete = "陌生人，謝謝替我找到十個零件。";
     [Header("對話速度"), Range(0.001f, 5.5f)]
     public float dialogSpeed = 0.5f;
+    [Header("音效")]
+    public AudioClip soundDialog;
+    public AudioClip soundProp;
 
     // 定義列舉
     public enum npcState
@@ -27,6 +30,8 @@ public class NPC : MonoBehaviour
     public int propTotal;
     public Text textProp;
 
+    private AudioSource aud;
+
     /// <summary>
     /// 對話開始
     /// </summary>
@@ -39,6 +44,7 @@ public class NPC : MonoBehaviour
         {
             case npcState.start:
                 StartCoroutine(ShowDialog(dialogStart));
+                _npcState = npcState.notComplete;
                 break;
             case npcState.notComplete:
                 StartCoroutine(ShowDialog(dialogNotComplete));
@@ -77,6 +83,7 @@ public class NPC : MonoBehaviour
         // for (初始值；條件(布林值)；迭代器
         for (int i = 0; i < dialog.Length; i++)
         {
+            aud.PlayOneShot(soundDialog, 0.5f);
             textDialog.text += dialog[i].ToString();
             yield return new WaitForSeconds(dialogSpeed);
         }
@@ -87,6 +94,7 @@ public class NPC : MonoBehaviour
     /// </summary>
     private void DialogEnd()
     {
+        StopAllCoroutines();
         dialog.SetActive(false);
     }
 
@@ -96,11 +104,14 @@ public class NPC : MonoBehaviour
     public void GetProp()
     {
         propCurrent++;
+        aud.PlayOneShot(soundProp, 0.5f);
         textProp.text = "零件： " + propCurrent + " / " + propTotal;
+        if (propCurrent == propTotal) _npcState = npcState.complete;
     }
 
     private void Start()
     {
+        aud = GetComponent<AudioSource>();
         propTotal = GameObject.FindGameObjectsWithTag("道具").Length;
         textProp.text = "零件： 0 / " + propTotal;
     }
