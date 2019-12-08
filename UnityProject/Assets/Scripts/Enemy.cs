@@ -105,6 +105,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 延遲給予玩家傷害值，避免怪物剛舉手玩家就受傷
+    /// </summary>
     private void DelayAttack()
     {
         RaycastHit hit; // 射線碰撞資訊

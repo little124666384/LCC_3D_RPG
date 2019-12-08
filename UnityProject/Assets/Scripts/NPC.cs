@@ -4,6 +4,7 @@ using System.Collections;
 
 public class NPC : MonoBehaviour
 {
+    #region 欄位
     [Header("對話介面")]
     public GameObject dialog;
     public Text textDialog;
@@ -16,6 +17,7 @@ public class NPC : MonoBehaviour
     [Header("音效")]
     public AudioClip soundDialog;
     public AudioClip soundProp;
+    
 
     // 定義列舉
     public enum npcState
@@ -31,7 +33,9 @@ public class NPC : MonoBehaviour
     public Text textProp;
 
     private AudioSource aud;
+    #endregion
 
+    #region 方法
     /// <summary>
     /// 對話開始
     /// </summary>
@@ -108,7 +112,9 @@ public class NPC : MonoBehaviour
         textProp.text = "零件： " + propCurrent + " / " + propTotal;
         if (propCurrent == propTotal) _npcState = npcState.complete;
     }
+    #endregion
 
+    #region 事件
     private void Start()
     {
         aud = GetComponent<AudioSource>();
@@ -125,4 +131,5 @@ public class NPC : MonoBehaviour
     {
         DialogEnd();
     }
+    #endregion
 }

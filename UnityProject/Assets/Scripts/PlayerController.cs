@@ -3,12 +3,16 @@ using Invector.CharacterController;
 
 public class PlayerController : MonoBehaviour
 {
+    #region 欄位
+    [Header("血量"), Range(100, 500)]
     public float hp = 100;
 
     private Animator ani, aniRoot;          // 模型動畫控制器，工具動畫控制器
     private vThirdPersonController tpc;     // 第三人稱控制器
     private Rigidbody rig;
+    #endregion
 
+    #region 事件
     private void Start()
     {
         ani = GetComponent<Animator>();
@@ -23,7 +27,12 @@ public class PlayerController : MonoBehaviour
         Jump();
         Attack();
     }
+    #endregion
 
+    #region 方法
+    /// <summary>
+    /// 移動狀態：動畫控制
+    /// </summary>
     private void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");     // 左右、AD
@@ -36,11 +45,17 @@ public class PlayerController : MonoBehaviour
         ani.SetBool("跑步開關", Input.GetKey(KeyCode.LeftShift));
     }
 
+    /// <summary>
+    /// 跳躍狀態：動畫控制
+    /// </summary>
     private void Jump()
     {
         ani.SetBool("跳躍開關", !aniRoot.GetBool("IsGrounded"));
     }
 
+    /// <summary>
+    /// 攻擊狀態：動畫控制
+    /// </summary>
     private void Attack()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -61,9 +76,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 受傷狀態：動畫與扣血
+    /// </summary>
+    /// <param name="damage">每次接收的傷害值</param>
     public void Hit(float damage)
     {
         hp -= damage;
         ani.SetTrigger("受傷觸發");
     }
+    #endregion
 }
