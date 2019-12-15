@@ -8,16 +8,15 @@ public class NPC : MonoBehaviour
     [Header("對話介面")]
     public GameObject dialog;
     public Text textDialog;
-    [Header("對話內容")]
-    public string dialogStart = "陌生人，請問可以替我找到十個零件嗎？";
-    public string dialogNotComplete = "陌生人，請問還沒找到十個零件嗎？";
-    public string dialogComplete = "陌生人，謝謝替我找到十個零件。";
     [Header("對話速度"), Range(0.001f, 5.5f)]
     public float dialogSpeed = 0.5f;
     [Header("音效")]
     public AudioClip soundDialog;
     public AudioClip soundProp;
     
+    private string dialogStart = "陌生人，請問可以替我找到十個零件嗎？要小心森林裡有很多怪物!";
+    private string dialogNotComplete = "陌生人，請問還沒找到十個零件嗎？";
+    private string dialogComplete = "陌生人，謝謝替我找到十個零件。";
 
     // 定義列舉
     public enum npcState

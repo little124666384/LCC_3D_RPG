@@ -21,13 +21,13 @@ public class Enemy : MonoBehaviour
     [Range(0, 5), Tooltip("攻擊延遲判定")]
     public float delayAttack = 1.2f;
 
+    public Renderer[] smr;
+
     private float timer;
     private Transform target;   // 目標物件
     private Animator ani;       // 動畫元件
     private NavMeshAgent agent; // 導覽代理器元件
     #endregion
-
-    public Renderer[] smr;
 
     #region 事件
     private void Start()
@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (ani.GetBool("死亡開關")) return;
         Track();
     }
 
@@ -134,6 +135,7 @@ public class Enemy : MonoBehaviour
     {
         ani.SetBool("死亡開關", true);
         StartCoroutine(DeadEffect());
+        CancelInvoke("DelayAttack");
     }
 
     private IEnumerator DeadEffect()
@@ -142,12 +144,14 @@ public class Enemy : MonoBehaviour
 
         while (da < 1)
         {
-            da += 0.01f;
+            da += 0.05f;
             smr[0].material.SetFloat("_DissolveAmount", da);
             smr[1].material.SetFloat("_DissolveAmount", da);
             smr[2].material.SetFloat("_DissolveAmount", da);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.005f);
         }
+
+        Destroy(gameObject);
     }
     #endregion
 }
