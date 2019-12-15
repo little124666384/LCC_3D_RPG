@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (ani.GetBool("死亡開關")) return;
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("攻擊")) return;
         Track();
     }
 
@@ -105,6 +106,9 @@ public class Enemy : MonoBehaviour
         {
             timer += Time.deltaTime;                                        // 否則 計時器 < 冷卻時間，累加時間
             Idle();                                                         // 等待
+            Vector3 posTarget = target.position;
+            Quaternion quaLook = Quaternion.LookRotation((posTarget - transform.position).normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, quaLook, 0.3f * Time.deltaTime * 3);
         }
     }
 
