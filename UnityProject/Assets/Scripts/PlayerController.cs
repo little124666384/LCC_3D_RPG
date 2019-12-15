@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Invector.CharacterController;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerController : MonoBehaviour
     #region 欄位
     [Header("血量"), Range(100, 500)]
     public float hp = 100;
+    [Header("血條")]
+    public Slider hpSlider;
 
     private Animator ani, aniRoot;          // 模型動畫控制器，工具動畫控制器
     private vThirdPersonController tpc;     // 第三人稱控制器
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (ani.GetBool("死亡開關")) return;
         Move();
         Jump();
         Attack();
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
         ani.SetBool("跳躍開關", !aniRoot.GetBool("IsGrounded"));
     }
 
+    private bool attackFinish = true;
+
     /// <summary>
     /// 攻擊狀態：動畫控制
     /// </summary>
@@ -64,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 取得動畫狀態資訊.動畫名稱是否為 ""
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("攻擊"))
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("攻擊") || ani.GetCurrentAnimatorStateInfo(0).IsName("受傷"))
         {
             tpc.enabled = false;
             rig.constraints = RigidbodyConstraints.FreezeAll;
@@ -83,7 +89,16 @@ public class PlayerController : MonoBehaviour
     public void Hit(float damage)
     {
         hp -= damage;
+        hpSlider.value = hp;
         ani.SetTrigger("受傷觸發");
+        if (hp <= 0) Dead();
+    }
+
+    private void Dead()
+    {
+        ani.SetBool("死亡開關", true);
+        tpc.enabled = false;
+        rig.constraints = RigidbodyConstraints.FreezeAll;
     }
     #endregion
 }

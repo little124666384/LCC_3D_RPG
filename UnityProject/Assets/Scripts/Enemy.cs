@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
 
     private void Hit()
     {
-
+        
     }
 
     private void Dead()
