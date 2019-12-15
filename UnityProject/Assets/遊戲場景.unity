@@ -292,6 +292,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!137 &34881521 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: b6ca2eb98fa986849aaaafd5f9b53e59,
+    type: 3}
+  m_PrefabInstance: {fileID: 213722997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &55497166 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: b6ca2eb98fa986849aaaafd5f9b53e59,
+    type: 3}
+  m_PrefabInstance: {fileID: 213722997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &90242680
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +688,10 @@ MonoBehaviour:
   cd: 3.5
   rangeAttack: 2.5
   delayAttack: 1.2
+  smr:
+  - {fileID: 34881521}
+  - {fileID: 528784314}
+  - {fileID: 55497166}
 --- !u!195 &204038914
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -712,6 +728,14 @@ PrefabInstance:
     - target: {fileID: 100090, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
       propertyPath: m_TagString
       value: "\u6575\u4EBA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
       propertyPath: m_LocalPosition.x
@@ -818,7 +842,13 @@ MonoBehaviour:
   hpSlider: {fileID: 2101238909}
   rangeAttack: 2.2
   delayAttack: 1.2
-  attack: 20
+  attack: 999
+--- !u!137 &528784314 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700002, guid: b6ca2eb98fa986849aaaafd5f9b53e59,
+    type: 3}
+  m_PrefabInstance: {fileID: 213722997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &650707931
 PrefabInstance:
   m_ObjectHideFlags: 0

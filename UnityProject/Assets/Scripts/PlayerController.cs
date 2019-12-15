@@ -131,10 +131,10 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        ani.SetBool("死亡開關", true);
         tpc.enabled = false;
         tpc.lockMovement = true;
         rig.constraints = RigidbodyConstraints.FreezeAll;
+        ani.SetBool("死亡開關", true);
     }
     #endregion
 }

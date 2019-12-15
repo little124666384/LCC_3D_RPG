@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;   // 引用 人工智慧 API
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent; // 導覽代理器元件
     #endregion
 
+    public Renderer[] smr;
+
     #region 事件
     private void Start()
     {
+        
         ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
@@ -121,7 +125,6 @@ public class Enemy : MonoBehaviour
 
     public void Hit(float damage)
     {
-        print("受傷");
         ani.SetTrigger("受傷觸發");
         hp -= damage;
         if (hp <= 0) Dead();
@@ -130,6 +133,21 @@ public class Enemy : MonoBehaviour
     private void Dead()
     {
         ani.SetBool("死亡開關", true);
+        StartCoroutine(DeadEffect());
+    }
+
+    private IEnumerator DeadEffect()
+    {
+        float da = smr[0].material.GetFloat("_DissolveAmount");
+
+        while (da < 1)
+        {
+            da += 0.01f;
+            smr[0].material.SetFloat("_DissolveAmount", da);
+            smr[1].material.SetFloat("_DissolveAmount", da);
+            smr[2].material.SetFloat("_DissolveAmount", da);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
     #endregion
 }
