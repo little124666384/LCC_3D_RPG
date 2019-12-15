@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     #region 欄位
     [Header("基本欄位")]
-    public float atk = 20;
+    public float attack = 20;
     public float hp = 250;
     [Range(0f, 100f)]
     public float speed = 1.5f;
@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour
     public float rangeAttack = 3f;
     [Range(0, 5), Tooltip("攻擊延遲判定")]
     public float delayAttack = 1.2f;
-
-    public float attack = 20;
 
     private float timer;
     private Transform target;   // 目標物件
@@ -112,7 +110,7 @@ public class Enemy : MonoBehaviour
     {
         RaycastHit hit; // 射線碰撞資訊
         // 物理.射線碰撞(起點，方向，射線碰撞資訊，長度)
-        if (Physics.Raycast(transform.position + Vector3.up, transform.forward,out hit, rangeAttack))
+        if (Physics.Raycast(transform.position + Vector3.up, transform.forward, out hit, rangeAttack))
         {
             if (hit.collider.gameObject.name == "守衛")
             {
@@ -121,14 +119,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Hit()
+    public void Hit(float damage)
     {
-        
+        print("受傷");
+        ani.SetTrigger("受傷觸發");
+        hp -= damage;
+        if (hp <= 0) Dead();
     }
 
     private void Dead()
     {
-
+        ani.SetBool("死亡開關", true);
     }
     #endregion
 }

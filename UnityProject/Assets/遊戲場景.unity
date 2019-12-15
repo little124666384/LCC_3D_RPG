@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99272171d690d44aa5a4fde83ac2dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 20
+  attack: 20
   hp: 250
   speed: 2.5
   distanceAttack: 2.3
@@ -676,7 +676,6 @@ MonoBehaviour:
   cd: 3.5
   rangeAttack: 2.5
   delayAttack: 1.2
-  attack: 999
 --- !u!195 &204038914
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -709,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 100090, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
       propertyPath: m_Name
       value: "\u7368\u773C\u7378\u4EBA\u738B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100090, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
+      propertyPath: m_TagString
+      value: "\u6575\u4EBA"
       objectReference: {fileID: 0}
     - target: {fileID: 400090, guid: b6ca2eb98fa986849aaaafd5f9b53e59, type: 3}
       propertyPath: m_LocalPosition.x
@@ -813,6 +816,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   hpSlider: {fileID: 2101238909}
+  rangeAttack: 2.2
+  delayAttack: 1.2
+  attack: 20
 --- !u!1001 &650707931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1431,7 +1437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.08
+      value: 38.72
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 3}
       propertyPath: m_LocalRotation.x
